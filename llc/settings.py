@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-63fz)e9=blbjwg501^ji&zwml20shxghh3e@z0pt(c)!(*y&_i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost",".onrender.com",]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
@@ -59,21 +59,12 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-# REST_USE_JWT = True
-# JWT_AUTH_COOKIE = None          # keep None for React header-based auth
-# JWT_AUTH_REFRESH_COOKIE = None  # keep None for React header-based auth
-# TOKEN_MODEL = None
 
-REST_AUTH = {
-    "USE_JWT": True,
-    "JWT_AUTH_COOKIE": None,
-    "JWT_AUTH_REFRESH_COOKIE": None,
-    "TOKEN_MODEL": None,
-}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -164,6 +155,11 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     
 }
+
+REST_USE_JWT = True
+# JWT_AUTH_COOKIE = None          # keep None for React header-based auth
+# JWT_AUTH_REFRESH_COOKIE = None  # keep None for React header-based auth
+# TOKEN_MODEL = None
 
 
 SIMPLE_JWT = {
