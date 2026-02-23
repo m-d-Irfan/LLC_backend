@@ -1,12 +1,17 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User
+from .models import CustomUser
 
+@admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+
     fieldsets = UserAdmin.fieldsets + (
-        ("Roles & Profile", {"fiels": ("is_instructor", "is_student", "profile_image")})
+        ("Role", {"fields": ("is_instructor", "is_student")}),
     )
 
-    list_display = ("username", "is_insturctor", "is_student", "is_staff")
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        ("Role", {"fields": ("is_instructor", "is_student")}),
+    )
 
-
+    list_display = ("username", "email", "is_instructor", "is_student", "is_staff")

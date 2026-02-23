@@ -66,7 +66,9 @@ SITE_ID = 1
 
 REST_AUTH = {
     "USE_JWT": True,
-    "TOKEN_MODEL": None,  # prevents TokenModel lookup errors
+    "JWT_AUTH_COOKIE": None,
+    "JWT_AUTH_REFRESH_COOKIE": None,
+    "TOKEN_MODEL": None,
 }
 
 MIDDLEWARE = [
@@ -199,7 +201,7 @@ TIME_ZONE = "Asia/Dhaka"
 USE_I18N = True
 USE_TZ = True
 
-AUTH_USER_MODEL = "user.User"
+AUTH_USER_MODEL = "user.CustomUser"
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "LLC API",

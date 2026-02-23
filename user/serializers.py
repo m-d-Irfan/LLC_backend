@@ -16,7 +16,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["username","email","password","role"]
+        fields = ["first_name","last_name","username","email","password","role"]
 
     def create(self,validated_data):
         role = validated_data.pop("role")
@@ -34,12 +34,34 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         user.save()
         return user
-    
-class MeSerializer(serializers.ModelSerializer):
-    avater_url = serializers.CharField(read_only = True)
 
-    class meta:
+class MeSerializer(serializers.ModelSerializer):
+    # profile_image_url = serializers.SerializerMethodField()
+
+    class Meta:
         model = User
-        fields = ["id", "username", "email", "is_instructor", "is_student", "avater_url", "profile_image"]
-        read_only_fields = ["id", "is_instructor", "is_student", "avater_url"]
+        fields = [
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            # "profile_image_url",
+        ]
+
+    # def get_profile_image_url(self, obj):
+    #     request = self.context.get("request")
+    #     if not obj.profile_image:
+    #         return None
+    #     if request is None:
+    #         return obj.profile_image.url
+    #     return request.build_absolute_uri(obj.profile_image.url)
+
+
+# class ProfileImageUpdateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ["profile_image"]
+
+
 
