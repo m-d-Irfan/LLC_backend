@@ -25,7 +25,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User(**validated_data)
         user.set_password(password)
 
-        if role == "is_instructor":
+        if role == "instructor":
             user.is_instructor = True
             user.is_student = False
         else:
@@ -46,6 +46,8 @@ class MeSerializer(serializers.ModelSerializer):
             "email",
             "first_name",
             "last_name",
+            "is_instructor",
+            "is_student",
             # "profile_image_url",
         ]
 

@@ -10,11 +10,10 @@ from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView, To
 urlpatterns = [
     path("admin/", admin.site.urls),
 
-    # dj-rest-auth endpoints (login/logout/password reset/user)
     path("api/auth/", include("dj_rest_auth.urls")),
+    path("api/auth/token/", TokenObtainPairView.as_view(), name="jwt-login"),
     path("api/auth/register/",RegisterView.as_view(), name = "register"),
 
-    path("api/auth/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     # Optional: JWT utilities (keep only if you will call them from React)
     path("api/auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/auth/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
@@ -25,6 +24,8 @@ urlpatterns = [
 
     # Your app APIs
     path("api/user/", include(("user.urls", "user"), namespace="user")),
+    path("api/course/", include(("course.urls", "course"), namespace="course")),
+    path("api/enrollment/", include(("enrollment.urls", "enrollment"), namespace="enrollment")),
 ]
 
 if settings.DEBUG:
