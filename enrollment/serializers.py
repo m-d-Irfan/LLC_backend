@@ -29,7 +29,7 @@ class LessonProgressSerializer(serializers.ModelSerializer):
     lesson = LessonSummarySerializer(read_only=True)
     class Meta:
         model = LessonProgress
-        fields = ["id","lesson","completed_at","is_complete"]
+        fields = ["id","lesson","completed_at"]
         read_only_fields = ["completed_at"]
 
 class LessonProgressCreateSerializer(serializers.ModelSerializer):

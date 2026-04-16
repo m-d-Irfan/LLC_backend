@@ -1,6 +1,3 @@
-# from turtle import title
-# from urllib import request
-
 from rest_framework import serializers
 from .models import Course, Module, Lesson
 

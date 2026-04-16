@@ -37,7 +37,7 @@ class LessonProgress(models.Model):
         
     )
     completed_at = models.DateTimeField(auto_now_add=True)
-    is_complete = models.BooleanField(default=False)
+    # is_complete = models.BooleanField(default=False)
     class Meta:
         unique_together = ["student", "lesson"]
 
