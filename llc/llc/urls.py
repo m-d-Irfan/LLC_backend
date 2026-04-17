@@ -25,6 +25,7 @@ urlpatterns = [
     # Your app APIs
     path("api/user/", include(("user.urls", "user"), namespace="user")),
     path("api/course/", include(("course.urls", "course"), namespace="course")),
+    path("api/enrollment/", include(("enrollment.urls", "enrollment"), namespace="enrollment")),
 ]
 
 if settings.DEBUG:

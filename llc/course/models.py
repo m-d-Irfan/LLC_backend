@@ -18,8 +18,25 @@ class Course(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(default=timezone.now)
 
-    class Meta:
-        abstract = True
+    def save(self, *args, **kwargs):
+        self.updated_at = timezone.now()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+class Module(models.Model):
+    title = models.CharField(max_length=255)
+    order = models.IntegerField()
+
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name="modules"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):
         self.updated_at = timezone.now()
@@ -28,7 +45,26 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+class Lesson(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    video_url = models.URLField(blank=True, null= True)
+    order = models.IntegerField()
 
+    module = models.ForeignKey(
+        Module,
+        on_delete=models.CASCADE,
+        related_name="lessons"
+    )
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(default=timezone.now)
+
+    def save(self, *args, **kwargs):
+        self.updated_at = timezone.now()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
 
 
