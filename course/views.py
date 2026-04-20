@@ -3,6 +3,7 @@ from rest_framework import generics, permissions
 from .models import Course, Module, Lesson
 from .serializers import CourseCreateSerializer, CourseListSerializer, CourseDetailSerializer, ModuleCreateSerializer, LessonCreateSerializer, ModuleSerializer, LessonSerializer
 from .permissions import IsInstructor
+from enrollment.models import Enrollment
 
 class CourseCreateView(generics.CreateAPIView):
     permission_classes = [IsInstructor]
@@ -16,13 +17,27 @@ class CourseCreateView(generics.CreateAPIView):
 class CourseListView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
     serializer_class = CourseListSerializer
-    
+
     def get_queryset(self):
-        return Course.objects.select_related("created_by").order_by("-created_at")
+        return Course.objects.filter(
+            is_published=True
+        ).select_related("created_by").order_by("-created_at")
 
 class CourseDetailView(generics.RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
-    serializer_class = CourseDetailSerializer
+
+    def get_serializer_class(self):
+        user = self.request.user
+        if user.is_authenticated:
+            course_pk = self.kwargs.get("pk")
+            is_enrolled = Enrollment.objects.filter(
+                student=user,
+                course_id=course_pk,
+                is_active=True
+            ).exists()
+            if is_enrolled:
+                return CourseEnrolledDetailSerializer  # full content
+        return CourseDetailSerializer                  # preview only
 
     def get_queryset(self):
         return Course.objects.prefetch_related("modules__lessons")

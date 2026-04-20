@@ -46,9 +46,18 @@ INSTALLED_APPS = [
     'quiz',
     'tutor',
     'user',
+
+    'cloudinary_storage', 'cloudinary',
 ]
 
 SITE_ID = 1
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'your_cloud_name',
+    'API_KEY':    'your_api_key',
+    'API_SECRET': 'your_api_secret',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # ── Middleware ───────────────────────────────────────────────────────────────
 MIDDLEWARE = [
@@ -151,6 +160,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     # Add your Vercel frontend URL here once deployed, e.g.:
     # "https://your-frontend.vercel.app",
+    "http://localhost:3000",
 ]
 
 CORS_ALLOW_CREDENTIALS = False
@@ -172,8 +182,6 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "Backend API documentation",
     "VERSION": "1.0.0",
 }
-
-
 
 
 

@@ -8,6 +8,9 @@ User = settings.AUTH_USER_MODEL
 class Course(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
+    thumbnail = models.ImageField(upload_to="course_thumbnails/", blank=True, null=True) 
+    price = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)            
+    is_published = models.BooleanField(default=False)
 
     created_by = models.ForeignKey(
         User,
