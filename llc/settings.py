@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-63fz)e9=blbjwg501^ji&zwml20shxghh3e@z0pt(c)!(*y&_i')
 # DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 DEBUG = True
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com", "http://localhost:3000",]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
@@ -47,15 +47,16 @@ INSTALLED_APPS = [
     'tutor',
     'user',
 
-    'cloudinary_storage', 'cloudinary',
+    'cloudinary_storage', 
+    'cloudinary',
 ]
 
 SITE_ID = 1
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'your_cloud_name',
-    'API_KEY':    'your_api_key',
-    'API_SECRET': 'your_api_secret',
+    'CLOUD_NAME': os.environ.get('duu9rchyx'),
+    'API_KEY':    os.environ.get('181876593994326'),
+    'API_SECRET': os.environ.get('VWs6GULV3misIctGPMZdfuD5tpU'),
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 

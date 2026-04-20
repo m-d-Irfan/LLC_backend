@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
 from .models import Course, Module, Lesson
-from .serializers import CourseCreateSerializer, CourseListSerializer, CourseDetailSerializer, ModuleCreateSerializer, LessonCreateSerializer, ModuleSerializer, LessonSerializer
+from .serializers import CourseCreateSerializer, CourseListSerializer, CourseDetailSerializer, ModuleCreateSerializer, LessonCreateSerializer, ModuleSerializer, LessonSerializer, CourseEnrolledDetailSerializer
 from .permissions import IsInstructor
 from enrollment.models import Enrollment
 
