@@ -78,7 +78,7 @@ class CourseUpdateView(generics.UpdateAPIView):
     """PATCH any combination of title/description/price/is_published/thumbnail."""
     permission_classes = [IsInstructor]
     serializer_class = CourseUpdateSerializer
-    http_method_names = ["patch", "options"]
+    # http_method_names = ["patch", "options"]
 
     def get_queryset(self):
         return Course.objects.filter(created_by=self.request.user)
