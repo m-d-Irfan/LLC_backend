@@ -31,7 +31,7 @@ urlpatterns = [
          ModuleDeleteView.as_view(),  name="course-module-delete"),
 
     # Lessons — create (nested), update/delete (flat by pk)
-    path("<int:course_pk>/modules/<int:module_pk>/lessons/create/",
+    path("modules/<int:module_pk>/lessons/create/",
          LessonCreateView.as_view(),  name="course-lesson-create"),
     path("lesson/<int:pk>/update/",
          LessonUpdateView.as_view(),  name="course-lesson-update"),
