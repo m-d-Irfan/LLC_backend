@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
 from .models import Enrollment, LessonProgress
-from .serializers import EnrollmentSerializer, EnrollmentCreateSerializer, LessonProgressCreateSerializer, LessonProgressSerializer
+from .serializers import EnrollmentSerializer, EnrollmentCreateSerializer, LessonProgressCreateSerializer, LessonProgressSerializer, CourseListSerializer
 from user.permissions import IsStudent, IsInstructor
 
 class EnrollmentCreateView(generics.CreateAPIView):
