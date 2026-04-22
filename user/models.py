@@ -5,12 +5,25 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 def user_profile_image_path(instance: "CustomUser", filename: str) -> str:
-    # Example: user_profile/12/avatar.png
     return f"user_profile/{instance.id}/{filename}"
+
+class InstructorStatus(models.TextChoices):
+    PENDING  = "pending",  "Pending"
+    APPROVED = "approved", "Approved"
+    REJECTED = "rejected", "Rejected"
 
 class CustomUser(AbstractUser):
     is_instructor = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=True)
+    is_student    = models.BooleanField(default=True)
+
+    # Only meaningful when is_instructor=True
+    instructor_status = models.CharField(
+        max_length=10,
+        choices=InstructorStatus.choices,
+        default=InstructorStatus.PENDING,
+    )
+    # Admins can leave a note when rejecting an instructor
+    instructor_rejection_reason = models.TextField(blank=True, default="")
 
     # profile_image = models.ImageField(upload_to="profiles/", blank=True, null=True)
     profile_image = models.ImageField(
@@ -43,5 +56,3 @@ class CustomUser(AbstractUser):
     #     email_hash = hashlib.md5(email.encode("utf-8")).hexdigest()
     #     # 'identicon' generates a nice default if no gravatar exists
     #     return f"https://www.gravatar.com/avatar/{email_hash}?d=identicon"
-
-

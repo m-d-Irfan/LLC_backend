@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'quiz',
     'tutor',
     'user',
+    'adminpanel',
 
     'cloudinary_storage', 
     'cloudinary',
@@ -183,6 +184,18 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "Backend API documentation",
     "VERSION": "1.0.0",
 }
+
+# ── Email ─────────────────────────────────────────────────────────────────────
+# Set these in your Render environment variables.
+# For Gmail: enable 2FA then create an App Password at
+# https://myaccount.google.com/apppasswords
+EMAIL_BACKEND      = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST         = "smtp.gmail.com"
+EMAIL_PORT         = 587
+EMAIL_USE_TLS      = True
+EMAIL_HOST_USER    = os.environ.get("EMAIL_HOST_USER", "educore.llc@gmail.com")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "seau fksj evfn eqdw")
+DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_HOST_USER", "EduCore AI <noreply@educore.ai>")
 
 
 

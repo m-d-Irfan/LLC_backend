@@ -1,43 +1,36 @@
-# from random import choices
-
-from os import read
-
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-
-# from llc import user
-# from user import User
 
 User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only = True, min_length=8)
-    role = serializers.ChoiceField(choices=["student","instructor"], write_only = True)
+    password = serializers.CharField(write_only=True, min_length=8)
+    role = serializers.ChoiceField(choices=["student", "instructor"], write_only=True)
 
     class Meta:
         model = User
-        fields = ["first_name","last_name","username","email","password","role"]
+        fields = ["first_name", "last_name", "username", "email", "password", "role"]
 
-    def create(self,validated_data):
-        role = validated_data.pop("role")
+    def create(self, validated_data):
+        role     = validated_data.pop("role")
         password = validated_data.pop("password")
 
         user = User(**validated_data)
         user.set_password(password)
 
         if role == "instructor":
-            user.is_instructor = True
-            user.is_student = False
+            user.is_instructor      = True
+            user.is_student         = False
+            user.instructor_status  = "pending"  
         else:
             user.is_instructor = False
-            user.is_student = True
+            user.is_student    = True
 
         user.save()
         return user
 
-class MeSerializer(serializers.ModelSerializer):
-    # profile_image_url = serializers.SerializerMethodField()
 
+class MeSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
@@ -48,7 +41,8 @@ class MeSerializer(serializers.ModelSerializer):
             "last_name",
             "is_instructor",
             "is_student",
-            # "profile_image_url",
+            "is_staff",
+            "instructor_status",     
         ]
 
     # def get_profile_image_url(self, obj):
