@@ -10,12 +10,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-63fz)e9=blbjwg501^ji&
 # DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 DEBUG = True
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com", "http://localhost:3000", 
-                 "https://llc-front-end-4emt.vercel.app/",]
+                 "https://educore-ai-tan.vercel.app",]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://llc-backend-rpyz.onrender.com",
+    "https://educore-ai-tan.vercel.app,"
 ]
 
 # ── Apps ────────────────────────────────────────────────────────────────────
@@ -161,7 +162,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://llc-front-end-4emt.vercel.app",
+    "https://educore-ai-tan.vercel.app",
     "http://localhost:3000",
 ]
 
