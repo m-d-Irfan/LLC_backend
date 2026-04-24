@@ -9,7 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-63fz)e9=blbjwg501^ji&zwml20shxghh3e@z0pt(c)!(*y&_i')
 # DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 DEBUG = True
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com", "http://localhost:3000",]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com", "http://localhost:3000", 
+                 "https://llc-front-end-4emt.vercel.app/",]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
@@ -24,7 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage', 
     'django.contrib.staticfiles',
+    'cloudinary',
 
     'rest_framework',
     'corsheaders',
@@ -48,8 +51,6 @@ INSTALLED_APPS = [
     'user',
     'adminpanel',
 
-    'cloudinary_storage', 
-    'cloudinary',
 ]
 
 SITE_ID = 1
@@ -160,13 +161,11 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    # Add your Vercel frontend URL here once deployed, e.g.:
-    # "https://your-frontend.vercel.app",
+    "https://llc-front-end-4emt.vercel.app",
     "http://localhost:3000",
 ]
 
-CORS_ALLOW_CREDENTIALS = False
-
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
     "accept",
     "authorization",
