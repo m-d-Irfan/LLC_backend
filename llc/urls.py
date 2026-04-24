@@ -27,7 +27,7 @@ urlpatterns = [
     path("api/course/", include(("course.urls", "course"), namespace="course")),
     path("api/enrollment/", include(("enrollment.urls", "enrollment"), namespace="enrollment")),
     path("api/certificate/", include(("certificate.urls", "certificate"), namespace="certificate")),
-    path("api/adminpanel/", include(("adminpanel.urls", "adminpanel"), namespace="adminpanel")),
+    path("api/admin/", include(("adminpanel.urls", "adminpanel"), namespace="adminpanel")),
 ]
 
 if settings.DEBUG:
