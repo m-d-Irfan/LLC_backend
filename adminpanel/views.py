@@ -40,8 +40,10 @@ class AdminStatsView(APIView):
             "pending_instructors":  User.objects.filter(is_instructor=True, instructor_status="pending").count(),
             "total_courses":        Course.objects.count(),
             "published_courses":    Course.objects.filter(is_published=True).count(),
-            "pending_payments":     PaymentRecord.objects.filter(is_verified=False).count(),
-            "verified_payments":    PaymentRecord.objects.filter(is_verified=True).count(),
+            # "pending_payments":     PaymentRecord.objects.filter(is_verified=False).count(),
+            # "verified_payments":    PaymentRecord.objects.filter(is_verified=True).count(),
+            "pending_payments":  0, 
+            "verified_payments": 0, 
         }
         serializer = AdminStatsSerializer(data)
         return Response(serializer.data)
@@ -294,10 +296,10 @@ class AdminEnrollmentCancelView(APIView):
         course_title  = enrollment.course.title
 
         # Also unverify any associated payment so the payment record reflects reality
-        PaymentRecord.objects.filter(
-            student=enrollment.student,
-            course=enrollment.course,
-        ).update(is_verified=False, verified_at=None, verified_by=None)
+        # PaymentRecord.objects.filter(
+        #     student=enrollment.student,
+        #     course=enrollment.course,
+        # ).update(is_verified=False, verified_at=None, verified_by=None)
 
         enrollment.delete()
 
