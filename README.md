@@ -6,7 +6,6 @@ The backend for the Language Learning Center (LLC) platform, focused on providin
 - **Student Management:** Custom user models tailored for learners.
 - **Course System:** Comprehensive course materials and curriculum management.
 - **Enrollment:** Seamless student-to-course registration.
-- **Quiz System:** Integrated assessments and automated grading.
 - **Payment Integration:** Secure transaction handling for course access.
 - **Certificates:** Automated PDF certificate generation upon completion.
 
