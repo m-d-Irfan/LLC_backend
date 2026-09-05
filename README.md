@@ -1,4 +1,4 @@
-# LLC Backend - Language Learning API
+# LLC Backend - Language Learning Platform
 
 The backend for the Language Learning Center (LLC) platform, focused on providing a streamlined experience for students to access courses, take quizzes, and manage payments.
 
